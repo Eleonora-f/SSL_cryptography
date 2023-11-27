@@ -496,22 +496,27 @@ Dati
 a &= \sum_{p \in P} p^{a_p} \\
 b &= \sum_{p \in P} p^{b_p}
 \end{align*}
-se \( a | b \), allora \( a_p \leq b_p \) per ogni \( p \).
+se \( a | b \), allora \( a_p \leq b_p \) per ogni \( p \).\cite{tls}
 
 
 \subsubsection{Numeri primi sicuri}
-Un numero primo \( p \) è definito come "sicuro" o "safe prime" se \((p-1)/2\) è anch'esso un numero primo. Quest'ultimo è spesso indicato come \( q \). Quindi, per un numero primo sicuro \( p \), sia \( p \) che \( q \) sono primi. L'importanza dei numeri primi sicuri risiede principalmente nella crittografia basata sul logaritmo discreto. 
+Un numero primo \( p \) è definito come \textit{"sicuro"} o \textit{"safe prime"} se \((p-1)/2\) è anch'esso un numero primo. Quest'ultimo è spesso indicato come \( q \). Quindi, per un numero primo sicuro \( p \), sia \( p \) che \( q \) sono primi. L'importanza dei numeri primi sicuri risiede principalmente nella crittografia basata sul logaritmo discreto. 
+Per dimostrare matematicamente che un numero primo \( p \) è sicuro, si deve dimostrare che sia \( p \) che \( q = (p-1)/2 \) sono primi. Questo può essere fatto utilizzando qualsiasi test di primalità standard come il test di \textit{Miller-Rabin}.
 
-Per dimostrare matematicamente che un numero primo \( p \) è sicuro, si deve dimostrare che sia \( p \) che \( q = (p-1)/2 \) sono primi. Questo può essere fatto utilizzando qualsiasi test di primalità standard come il test di Miller-Rabin.
+Un esempio di un numero primo sicuro è \( p = 7 \). 
+\( (p-1)/2 = 3 \) è anch'esso un numero primo, quindi \( p \) è un numero primo sicuro.
 
-Un esempio di un numero primo sicuro è \( p = 7 \). \( (p-1)/2 = 3 \) è anch'esso un numero primo, quindi \( p \) è un numero primo sicuro.
+\textbf{Generazione dei numeri primi sicuri:}
+Il processo tipico per generare un numero primo sicuro inizia con la selezione casuale di un numero primo candidato \( q \). Dopodiché si verifica se \( 2q+1 \), che sarebbe il candidato \( p \), è primo. Questo processo viene ripetuto fino a quando non si trova una coppia \( q \) e \( p \) che soddisfa i requisiti di primalità.
+
+\textbf{Test di Primalità:} Per verificare la primalità di \( q \) e \( p \), si utilizzano test di primalità probabilistici, questi test sono preferibili per la loro efficienza e perché possono essere configurati per ridurre la probabilità di falsi positivi a livelli estremamente bassi. In contesti crittografici, è cruciale che la probabilità di errore sia minima per garantire la sicurezza del sistema.
 
 \subsubsection{Sicurezza e complessità computazionale}
-L'obiettivo principale della teoria della complessità è fornire meccanismi per classificare i problemi computazionali in base alle risorse necessarie per risolverli. Tale classificazione non dovrebbe dipendere da un particolare modello computazionale, ma piuttosto dovrebbe misurare la difficoltà intrinseca del problema. Le risorse misurate possono includere tempo, spazio di archiviazione, bit casuali, numero di processori, ecc., ma di solito l'attenzione principale è focalizzata sul tempo, e talvolta anche sullo spazio.
+L'obiettivo principale della teoria della complessità è fornire meccanismi per classificare i problemi computazionali in base alle risorse necessarie per risolverli. Tale classificazione non dovrebbe dipendere da un particolare modello computazionale, ma piuttosto dovrebbe misurare la difficoltà intrinseca del problema. Le risorse misurate possono includere tempo, spazio di archiviazione, bit casuali e numero di processori, ma di solito l'attenzione principale è focalizzata sul tempo e talvolta anche sullo spazio.
 
 \paragraph{Definizione}
-Un \textit{algoritmo} è una procedura computazionale ben definita che prende un input variabile e da questo ne crea un output. Naturalmente il termine "procedura computazionale ben definita" non è matematicamente preciso. Può essere reso tale utilizzando modelli computazionali formali come la macchina di Turing, le macchine ad accesso casuale o i circuiti booleani. 
-È solitamente di interesse trovare l'algoritmo più efficiente (cioè il più veloce) per risolvere un dato problema computazionale. Il tempo che un algoritmo impiega per fermarsi dipende dalla "dimensione" dell'istanza del problema. Inoltre l'unità di tempo utilizzata dovrebbe essere resa precisa, specialmente quando si confrontano le prestazioni di due algoritmi. La dimensione dell'input è il numero totale di bit necessari per rappresentare l'input nella notazione binaria ordinaria utilizzando uno schema di codifica appropriato. Occasionalmente la dimensione dell'input sarà il numero di elementi nell'input. $n$ Il tempo di esecuzione di un algoritmo su un input particolare è il numero di operazioni primitive o "passi" eseguiti.
+Un \textit{algoritmo} è una procedura computazionale ben definita che prende un input variabile e da questo ne crea un output. Naturalmente il termine \textit{"procedura computazionale ben definita"} non è matematicamente preciso, poichè può essere reso tale utilizzando modelli computazionali formali come la macchina di Turing, le macchine ad accesso casuale o i circuiti booleani. 
+Solitamente si tende a trovare l'algoritmo più efficiente per risolvere un dato problema computazionale. Il tempo che un algoritmo impiega per fermarsi dipende dalla \textit{dimensione} dell'istanza del problema. Inoltre l'unità di tempo utilizzata dovrebbe essere resa precisa, specialmente quando si confrontano le prestazioni di due algoritmi. La dimensione dell'input è il numero totale di bit necessari per rappresentare l'input nella notazione binaria ordinaria utilizzando uno schema di codifica appropriato. Occasionalmente la dimensione dell'input sarà il numero di elementi nell'input $n$. Il tempo di esecuzione di un algoritmo su un input particolare è il numero di operazioni primitive o \textit{passi eseguiti}.
 
 \paragraph{Notazione asintotica}
 \begin{enumerate}
@@ -522,7 +527,7 @@ Un \textit{algoritmo} è una procedura computazionale ben definita che prende un
 
 \item \textbf{Vincolo stretto asintotico}: \( f(n) = \Theta(g(n)) \) se esistono costanti positive \( c_1 \) e \( c_2 \) e un numero intero positivo \( n_0 \) tali che \( c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n) \) per tutti i valori di \( n \geq n_0 \).
 
-\item \textbf{Notazione "o piccola"}: \( f(n) = o(g(n)) \) se, per ogni costante positiva \( c \), esiste un \( n_0 \) tale che \( 0 \leq f(n) < c  g(n) \) per ogni \( n \geq n_0 \).
+\item \textbf{Notazione "o piccola"}: \( f(n) = o(g(n)) \) se, per ogni costante positiva \( c > 0 \), esiste un \( n_0 \) tale che \( 0 \leq f(n) < c  g(n) \) per ogni \( n \geq n_0 \).
 
 \end{enumerate}
 
